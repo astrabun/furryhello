@@ -24,6 +24,14 @@
   <meta name="twitter:description" content="{{ description or site.defaultDescription }}">
   <meta name="twitter:image" content="{{ site.baseUrl }}{{ ogImage or site.defaultOgImage }}">
 
+  {% if standard_site.publication_uri %}
+  <link rel="site.standard.publication" href="{{ standard_site.publication_uri }}">
+  {% endif %}
+  {% set standardDocumentUri = standard_site_documents[canonicalUrl or page.url] %}
+  {% if standardDocumentUri %}
+  <link rel="site.standard.document" href="{{ standardDocumentUri }}">
+  {% endif %}
+
   <link rel="stylesheet" href="/assets/css/tailwind.css">
 </head>
 <body class="min-h-full bg-white text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-50">

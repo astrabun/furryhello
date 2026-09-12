@@ -3,6 +3,7 @@ layout: base.njk
 title: "furryhello - please don't just say hello"
 description: 'A bare "hello" with nothing else wastes everyone''s time. Here''s what to send instead.'
 permalink: /en/
+publishedAt: 2026-09-12
 ---
 
 # furries: please don't just say "hello"

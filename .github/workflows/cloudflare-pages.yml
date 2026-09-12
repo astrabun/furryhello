@@ -32,6 +32,14 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - name: Sync site.standard.* records
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        continue-on-error: true
+        env:
+          BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
+          BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
+        run: pnpm --filter @furryhello/bluesky-standard-site sync:standard-site
+
       - run: pnpm --filter @furryhello/website build
         env:
           SWETRIX_BASE_URL: ${{ secrets.SWETRIX_BASE_URL }}
