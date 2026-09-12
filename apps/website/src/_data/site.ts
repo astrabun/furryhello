@@ -15,6 +15,6 @@ export default {
   defaultDescription:
     "A bare \"hello\" with nothing else wastes everyone's time. Here's what to send instead.",
   defaultOgImage: "/assets/images/og-default.png",
-  locales: ["en"],
+  locales: ["en", "fr"],
   defaultLocale: "en",
 } satisfies SiteData;
