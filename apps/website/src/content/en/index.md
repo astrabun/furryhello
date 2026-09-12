@@ -57,4 +57,6 @@ Link to this page: [https://furryhello.com/](https://furryhello.com/). (If you s
 
 Based on "No Hello" ([.net](https://nohello.net/en/), and [.com](https://www.nohello.com/)).
 
+[Source](https://github.com/astrabun/furryhello/)
+
 </div>
