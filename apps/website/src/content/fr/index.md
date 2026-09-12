@@ -3,6 +3,7 @@ layout: base.njk
 title: 'furryhello - n''écris pas juste "salut"'
 description: 'Un simple "salut" sans rien d''autre fait perdre du temps à tout le monde. Voici quoi envoyer à la place.'
 permalink: /fr/
+ogImage: /assets/images/og-fr.png
 publishedAt: 2026-09-12
 ---
 
