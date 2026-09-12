@@ -14,6 +14,14 @@ export default function (eleventyConfig: any) {
 
   eleventyConfig.addPassthroughCopy({ "src/assets/images": "assets/images" });
 
+  // Exposes the site.standard.publication AT-URI at a well-known path, per
+  // https://standard.site/docs/verification, alongside the <link> tags in
+  // base.njk that read the same data (standard_site.json / _documents.json
+  // are plain JSON and load automatically as Eleventy global data).
+  eleventyConfig.addPassthroughCopy({
+    "src/_data/standard_site_publication.at-uri.txt": ".well-known/site.standard.publication",
+  });
+
   // Markdown links to another host open in a new tab; links back to this
   // site (or relative links) stay in the same tab.
   const siteHost = new URL(site.baseUrl).host;

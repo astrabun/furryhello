@@ -1,0 +1,7 @@
+{
+  "extends": "@furryhello/tsconfig/base.json",
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "include": ["scripts/**/*.mts"]
+}
