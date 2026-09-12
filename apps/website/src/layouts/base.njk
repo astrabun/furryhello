@@ -4,15 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="/assets/images/furryhello_t.png">
+  {% if refreshTo %}
+  <meta http-equiv="refresh" content="0; url={{ refreshTo }}">
+  {% endif %}
 
   <title>{{ title or site.defaultTitle }}</title>
   <meta name="description" content="{{ description or site.defaultDescription }}">
-  <link rel="canonical" href="{{ site.baseUrl }}{{ page.url }}">
+  <link rel="canonical" href="{{ site.baseUrl }}{{ canonicalUrl or page.url }}">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="{{ title or site.defaultTitle }}">
   <meta property="og:description" content="{{ description or site.defaultDescription }}">
-  <meta property="og:url" content="{{ site.baseUrl }}{{ page.url }}">
+  <meta property="og:url" content="{{ site.baseUrl }}{{ canonicalUrl or page.url }}">
   <meta property="og:image" content="{{ site.baseUrl }}{{ ogImage or site.defaultOgImage }}">
   <meta property="og:locale" content="{{ page.lang or site.defaultLocale }}">
 
