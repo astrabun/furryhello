@@ -1,14 +1,14 @@
 # furryhello
 
-A small site making the case for not sending bare "hello"/"hi"/"how are you" DMs with no follow-up — please just ask the question.
+A small site making the case for not sending bare "hello"/"hi"/"how are you" DMs with no follow-up - please just ask the question.
 
 ## Structure
 
 pnpm monorepo:
 
-- `apps/website` — the Eleventy (11ty) site. TypeScript config, Markdown content, Tailwind CSS for styling, i18n-ready.
-- `packages/tsconfig` — shared base `tsconfig.json`.
-- `packages/bluesky-standard-site` — publishes `site.standard.*` (Bluesky/atproto) records for the site; see its own README for setup.
+- `apps/website` - the Eleventy (11ty) site. TypeScript config, Markdown content, Tailwind CSS for styling, i18n-ready.
+- `packages/tsconfig` - shared base `tsconfig.json`.
+- `packages/bluesky-standard-site` - publishes `site.standard.*` (Bluesky/atproto) records for the site; see its own README for setup.
 
 ## Getting started
 

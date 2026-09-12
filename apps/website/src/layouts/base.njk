@@ -27,7 +27,11 @@
   {% if standard_site.publication_uri %}
   <link rel="site.standard.publication" href="{{ standard_site.publication_uri }}">
   {% endif %}
-  {% set standardDocumentUri = standard_site_documents[canonicalUrl or page.url] %}
+  {# Deliberately keyed on the page's own URL, not canonicalUrl: unlike the
+     canonical/OG tags (which point "/" at "/en/" for SEO), the standard.site
+     document record for a given URL must match that exact URL, since that's
+     what a Bluesky embed looks up for whatever link was actually shared. #}
+  {% set standardDocumentUri = standard_site_documents[page.url] %}
   {% if standardDocumentUri %}
   <link rel="site.standard.document" href="{{ standardDocumentUri }}">
   {% endif %}

@@ -154,13 +154,17 @@ interface DocumentInput {
   tags: string[] | undefined;
 }
 
-// Every page under src/content/**/*.md is a "document" - this naturally
-// picks up new locale pages as i18n grows without any extra wiring here.
+// Every page under src/content/**/*.{md,njk} with `permalink` +
+// `publishedAt` front matter is a "document" - this naturally picks up new
+// locale pages as i18n grows, and also covers non-Markdown pages like the
+// "/" redirect stub (Bluesky's unfurler needs a record whose `path` exactly
+// matches whatever URL was shared, so "/" needs its own record even though
+// it just redirects to "/en/").
 async function collectDocuments(): Promise<{ documents: DocumentInput[]; skipped: number }> {
   const documents: DocumentInput[] = [];
   let skipped = 0;
 
-  for await (const entry of glob("**/*.md", { cwd: CONTENT_DIR })) {
+  for await (const entry of glob("**/*.{md,njk}", { cwd: CONTENT_DIR })) {
     const raw = readFileSync(path.join(CONTENT_DIR, entry), "utf8");
     const data = matter(raw).data as Record<string, any>;
 
