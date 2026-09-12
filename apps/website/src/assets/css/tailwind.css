@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@source "../../content/**/*.md";
+@source "../../layouts/**/*.njk";
+@source "../../_includes/**/*.liquid";
+
+@theme {
+  --color-accent: #f97316;
+}

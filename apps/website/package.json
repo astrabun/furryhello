@@ -1,0 +1,26 @@
+{
+  "name": "@furryhello/website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tailwindcss -i src/assets/css/tailwind.css -o _site/assets/css/tailwind.css --minify && eleventy --config=eleventy.config.ts",
+    "dev": "tailwindcss -i src/assets/css/tailwind.css -o _site/assets/css/tailwind.css --watch & eleventy --config=eleventy.config.ts --serve",
+    "lint": "oxlint -c ../../oxlint.config.ts .",
+    "fmt:check": "oxfmt -c ../../oxfmt.config.ts --check .",
+    "typecheck": "tsc --noEmit",
+    "generate-og-image": "node scripts/generate-og-image.ts"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "3.1.6",
+    "markdown-it": "14.2.0"
+  },
+  "devDependencies": {
+    "@furryhello/tsconfig": "workspace:*",
+    "@tailwindcss/cli": "4.3.3",
+    "@tailwindcss/typography": "0.5.20",
+    "@types/markdown-it": "14.2.0",
+    "@types/node": "22.20.2",
+    "tailwindcss": "4.3.3",
+    "typescript": "7.0.2"
+  }
+}

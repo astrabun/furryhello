@@ -1,0 +1,67 @@
+name: Cloudflare Pages
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+
+concurrency:
+  group: cloudflare-pages-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+  deployments: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      deployment-url: ${{ steps.deploy.outputs.url }}
+      alias-url: ${{ steps.deploy.outputs.alias-url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm --filter @furryhello/website build
+        env:
+          SWETRIX_BASE_URL: ${{ secrets.SWETRIX_BASE_URL }}
+          SWETRIX_PROJECT_ID: ${{ secrets.SWETRIX_PROJECT_ID }}
+
+      - name: Deploy to Cloudflare Pages
+        id: deploy
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ${{ vars.CLOUDFLARE_PAGES_PROJECT_NAME }}
+          directory: apps/website/_site
+          branch: ${{ github.head_ref || github.ref_name }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Comment preview links on PR
+        if: github.event_name == 'pull_request'
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: cloudflare-pages-preview
+          message: |
+            ### ☁️ Cloudflare Pages preview
+
+            | | |
+            |---|---|
+            | 🔗 Branch alias | ${{ steps.deploy.outputs.alias-url }} |
+            | 📦 This commit | ${{ steps.deploy.outputs.url }} |
+
+            Latest commit: ${{ github.event.pull_request.head.sha || github.sha }}

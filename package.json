@@ -1,0 +1,35 @@
+{
+  "name": "furryhello",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --filter=@furryhello/website",
+    "lint": "turbo run lint",
+    "fmt": "oxfmt -c oxfmt.config.ts .",
+    "fmt:check": "turbo run fmt:check",
+    "typecheck": "turbo run typecheck",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "9.1.7",
+    "lint-staged": "17.5.1",
+    "oxfmt": "0.67.0",
+    "oxlint": "1.82.0",
+    "turbo": "2.10.12",
+    "typescript": "7.0.2"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "oxlint -c oxlint.config.ts --fix",
+      "oxfmt -c oxfmt.config.ts"
+    ],
+    "*.{json,md,css,yml,yaml}": [
+      "oxfmt -c oxfmt.config.ts"
+    ]
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@11.9.0"
+}

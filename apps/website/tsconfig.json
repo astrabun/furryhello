@@ -1,0 +1,7 @@
+{
+  "extends": "@furryhello/tsconfig/base.json",
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "include": ["eleventy.config.ts", "src/**/*.ts", "scripts/**/*.ts"]
+}

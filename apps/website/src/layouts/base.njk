@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="{{ page.lang or site.defaultLocale }}" class="h-full">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="/assets/images/furryhello_t.png">
+
+  <title>{{ title or site.defaultTitle }}</title>
+  <meta name="description" content="{{ description or site.defaultDescription }}">
+  <link rel="canonical" href="{{ site.baseUrl }}{{ page.url }}">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ title or site.defaultTitle }}">
+  <meta property="og:description" content="{{ description or site.defaultDescription }}">
+  <meta property="og:url" content="{{ site.baseUrl }}{{ page.url }}">
+  <meta property="og:image" content="{{ site.baseUrl }}{{ ogImage or site.defaultOgImage }}">
+  <meta property="og:locale" content="{{ page.lang or site.defaultLocale }}">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title or site.defaultTitle }}">
+  <meta name="twitter:description" content="{{ description or site.defaultDescription }}">
+  <meta name="twitter:image" content="{{ site.baseUrl }}{{ ogImage or site.defaultOgImage }}">
+
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+</head>
+<body class="min-h-full bg-white text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-50">
+  <main class="mx-auto max-w-2xl px-4 py-12">
+    <div class="prose dark:prose-invert prose-slate max-w-none">
+      {{ content | safe }}
+    </div>
+  </main>
+
+  {% if analytics.enabled %}
+  <script src="https://swetrix.org/swetrix.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      swetrix.init("{{ analytics.projectId }}", { apiURL: "{{ analytics.baseUrl }}/backend/v1/log" });
+      swetrix.trackViews();
+    });
+  </script>
+  <noscript>
+    <img
+      src="{{ analytics.baseUrl }}/backend/v1/log/noscript?pid={{ analytics.projectId }}"
+      alt=""
+      referrerpolicy="no-referrer-when-downgrade"
+    >
+  </noscript>
+  {% endif %}
+</body>
+</html>
