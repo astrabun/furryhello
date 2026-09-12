@@ -55,6 +55,7 @@ jobs:
             pages deploy apps/website/_site
             --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT_NAME }}
             --branch=${{ github.head_ref || github.ref_name }}
+            --commit-dirty=true
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Comment preview links on PR
