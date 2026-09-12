@@ -221,7 +221,7 @@ async function main() {
       description: SITE_DESCRIPTION,
       icon,
       iconSha256,
-      preferences: { showInDiscover: true },
+      preferences: { showInDiscover: false },
     },
   });
   console.log(`Publication: ${publicationUri}`);
